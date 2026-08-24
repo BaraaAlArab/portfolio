@@ -1,8 +1,8 @@
 {
-  "name": "frontend",
+  "name": "portfolio-frontend",
   "version": "0.0.0",
   "private": true,
-  "description": "![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white&labelColor=20232a)\r ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white&labelColor=20232a)\r ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white&labelColor=20232a)\r ![React Router](https://img.shields.io/badge/React_Router-7-CA4245?logo=reactrouter&logoColor=white&labelColor=20232a)",
+  "description": "Personal portfolio website frontend — React, Vite and Tailwind CSS with a Glass Aurora theme",
   "homepage": "https://github.com/BaraaAlArab/portfolio#readme",
   "bugs": {
     "url": "https://github.com/BaraaAlArab/portfolio/issues"
@@ -12,9 +12,8 @@
     "url": "git+https://github.com/BaraaAlArab/portfolio.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "Baraa Al Arab",
   "type": "module",
-  "main": "vite.config.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
