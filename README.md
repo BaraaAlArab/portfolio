@@ -48,10 +48,10 @@ More screenshots are available in the [`screenshots/`](screenshots) directory.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/BaraaAlArab/portfolio.git
+git clone https://github.com/<your-username>/portfolio.git
 
-# 2. Enter the project folder
-cd portfolio
+# 2. Enter the frontend folder
+cd portfolio/FrontEnd
 
 # 3. Install dependencies
 npm install
@@ -115,7 +115,7 @@ To keep new sections consistent, reuse these utility combinations from the table
 
 **Baraa** — Full Stack Developer
 
-- GitHub: [@BaraaAlArab](https://github.com/BaraaAlArab)
+- GitHub: [@baraa](https://github.com/baraa)
 
 ---
 
