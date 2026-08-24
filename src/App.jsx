@@ -5,7 +5,7 @@ import HomePage from './Pages/HomePage.jsx'
 import AboutPage from './Pages/AboutPage.jsx'
 import SkillsPage from './Pages/SkillsPage.jsx'
 import DemoPages from './Pages/DemoPages.jsx'
-import HireMePage from './Pages/HireMePage.jsx'
+import HireMePage from './Pages/HireMe.jsx'
 
 function App() {
   return (
