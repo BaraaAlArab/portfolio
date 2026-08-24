@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+body {
+  background-color: #020617;
+  color: #ffffff;
+}
+
+@keyframes drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(120px, 80px) scale(1.15); }
+}
+
+@keyframes drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-140px, 60px) scale(0.9); }
+}
+
+@keyframes drift-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(80px, -100px) scale(1.2); }
+}
+
+@keyframes hue-cycle {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(360deg); }
+}
+
+.aurora-blob {
+  will-change: transform;
+}
+
+.drift-a { animation: drift-a 18s ease-in-out infinite; }
+.drift-b { animation: drift-b 22s ease-in-out infinite; }
+.drift-c { animation: drift-c 26s ease-in-out infinite; }
+
+.hue-cycle { animation: hue-cycle 30s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .drift-a, .drift-b, .drift-c, .hue-cycle {
+    animation: none;
+  }
+}
