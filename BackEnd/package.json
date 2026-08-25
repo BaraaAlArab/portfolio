@@ -1,0 +1,20 @@
+{
+  "name": "portfolio-backend",
+  "version": "1.0.0",
+  "description": "Node.js + Express API for the portfolio website",
+  "private": true,
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js"
+  },
+  "author": "Baraa Al Arab",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "nodemailer": "^9.0.5"
+  }
+}
