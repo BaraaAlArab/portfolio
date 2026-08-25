@@ -16,7 +16,7 @@ export default function HomePage() {
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <button className="flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-7 py-3 font-medium transition hover:scale-105">
-            <Rocket className="h-4 w-4" /> View Projects
+            <Rocket className="h-4 w-4" /> <Link to="/demo">View Projects</Link>
           </button>
           <Link
             to="/about"

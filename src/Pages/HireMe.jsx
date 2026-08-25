@@ -4,17 +4,52 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa6'
 
 const contactCards = [
   { Icon: Mail, label: 'Email', value: 'baraa9000alarab@gmail.com', href: 'mailto:baraa9000alarab@gmail.com' },
-  { Icon: MapPin, label: 'Location', value: 'Available Remote', href: null },
+  { Icon: MapPin, label: 'Location', value: 'Lebanon/Beirut', href: null },
   { Icon: FaGithub, label: 'GitHub', value: 'github.com/BaraaAlArab', href: 'https://github.com/BaraaAlArab' },
-  { Icon: FaLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/baraa-alarab', href: 'https://www.linkedin.com/in/baraa-alarab' },
+  { Icon: FaLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/baraa-alarab', href: 'https://www.linkedin.com/in/baraa-alarab-781363278' },
 ]
 
 export default function HireMePage() {
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle')
+  const [error, setError] = useState('')
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
 
-  function handleSubmit(e) {
+  function updateField(field) {
+    return (e) => setForm({ ...form, [field]: e.target.value })
+  }
+
+  async function handleSubmit(e) {
     e.preventDefault()
-    setSent(true)
+    setStatus('sending')
+    setError('')
+
+    try {
+      const res = await fetch('http://localhost:4000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Something went wrong.')
+      }
+
+      setStatus('sent')
+    } catch (err) {
+      setError(
+        err.message.includes('fetch')
+          ? 'Cannot reach the server. Is the backend running?'
+          : err.message
+      )
+      setStatus('error')
+    }
+  }
+
+  function resetForm() {
+    setForm({ name: '', email: '', message: '' })
+    setStatus('idle')
+    setError('')
   }
 
   return (
@@ -47,12 +82,12 @@ export default function HireMePage() {
       </section>
 
       <section className="mt-8 rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-md sm:p-8">
-        {sent ? (
+        {status === 'sent' ? (
           <div className="py-10 text-center">
             <h3 className="text-2xl font-semibold">Message sent! 🎉</h3>
             <p className="mt-2 text-white/60">I'll get back to you soon.</p>
             <button
-              onClick={() => setSent(false)}
+              onClick={resetForm}
               className="mt-6 rounded-full border border-white/25 bg-white/5 px-6 py-2.5 text-sm font-medium backdrop-blur-md transition hover:bg-white/15"
             >
               Send another
@@ -64,12 +99,16 @@ export default function HireMePage() {
               <input
                 type="text"
                 required
+                value={form.name}
+                onChange={updateField('name')}
                 placeholder="Your Name"
                 className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/40 transition focus:border-cyan-400/60 focus:outline-none"
               />
               <input
                 type="email"
                 required
+                value={form.email}
+                onChange={updateField('email')}
                 placeholder="Your Email"
                 className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/40 transition focus:border-cyan-400/60 focus:outline-none"
               />
@@ -77,14 +116,28 @@ export default function HireMePage() {
             <textarea
               required
               rows="5"
+              value={form.message}
+              onChange={updateField('message')}
               placeholder="Tell me about your project..."
               className="resize-none rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder-white/40 transition focus:border-cyan-400/60 focus:outline-none"
             />
+            {status === 'error' && (
+              <p className="rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-300">
+                {error}
+              </p>
+            )}
             <button
               type="submit"
-              className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-7 py-3 font-medium transition hover:scale-[1.02]"
+              disabled={status === 'sending'}
+              className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-7 py-3 font-medium transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
             >
-              <Send className="h-4 w-4" /> Send Message
+              {status === 'sending' ? (
+                <>Sending...</>
+              ) : (
+                <>
+                  <Send className="h-4 w-4" /> Send Message
+                </>
+              )}
             </button>
           </form>
         )}

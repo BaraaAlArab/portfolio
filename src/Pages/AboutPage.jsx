@@ -42,8 +42,8 @@ export default function AboutPage() {
 
       <section className="mt-14 grid grid-cols-2 gap-5 md:grid-cols-4">
         {[
-          { num: '1+', label: 'Years Coding' },
-          { num: '10+', label: 'Projects' },
+          { num: '5+', label: 'Years Coding' },
+          { num: '13', label: 'Projects' },
           { num: '100%', label: 'Passion' },
           { num: '24/7', label: 'Learning' },
         ].map((stat) => (
