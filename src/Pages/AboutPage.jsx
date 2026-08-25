@@ -1,4 +1,8 @@
+import { useState } from 'react'
+
 export default function AboutPage() {
+  const [photoOk, setPhotoOk] = useState(true)
+
   return (
     <main className="mx-auto max-w-4xl px-6 py-16 sm:px-10">
       <p className="mb-3 text-sm tracking-widest text-cyan-300 uppercase">About Me</p>
@@ -7,9 +11,18 @@ export default function AboutPage() {
       </h1>
 
       <div className="mt-10 grid items-start gap-8 md:grid-cols-[200px_1fr]">
-        <div className="flex h-48 w-48 items-center justify-center rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md">
-          <span className="font-semibold text-white/60">Photo</span>
-        </div>
+        {photoOk ? (
+          <img
+            src="/profile.jpg"
+            alt="Baraa Al Arab"
+            onError={() => setPhotoOk(false)}
+            className="h-48 w-48 rounded-2xl border border-white/15 object-cover backdrop-blur-md"
+          />
+        ) : (
+          <div className="flex h-48 w-48 items-center justify-center rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md">
+            <span className="font-semibold text-white/60">Photo</span>
+          </div>
+        )}
 
         <div className="space-y-4 leading-relaxed text-white/70">
           <p>

@@ -1,4 +1,5 @@
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt } from 'react-icons/fa6'
+import { SiExpress, SiMongodb } from 'react-icons/si'
 
 const skills = [
   { name: 'HTML', level: 'Advanced', Icon: FaHtml5, color: '#E34F26' },
@@ -6,6 +7,8 @@ const skills = [
   { name: 'JavaScript', level: 'Advanced', Icon: FaJs, color: '#F7DF1E' },
   { name: 'React', level: 'Intermediate', Icon: FaReact, color: '#61DAFB' },
   { name: 'Node.js', level: 'Intermediate', Icon: FaNodeJs, color: '#83CD29' },
+  { name: 'Express', level: 'Learning', Icon: SiExpress, color: '#E2E8F0' },
+  { name: 'MongoDB', level: 'Learning', Icon: SiMongodb, color: '#47A248' },
   { name: 'Git & GitHub', level: 'Intermediate', Icon: FaGitAlt, color: '#F05032' },
 ]
 

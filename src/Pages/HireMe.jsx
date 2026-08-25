@@ -3,10 +3,10 @@ import { Mail, MapPin, Send } from 'lucide-react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa6'
 
 const contactCards = [
-  { Icon: Mail, label: 'Email', value: 'baraa@example.com' },
-  { Icon: MapPin, label: 'Location', value: 'Available Remote' },
-  { Icon: FaGithub, label: 'GitHub', value: 'github.com/baraa' },
-  { Icon: FaLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/baraa' },
+  { Icon: Mail, label: 'Email', value: 'baraa9000alarab@gmail.com', href: 'mailto:baraa9000alarab@gmail.com' },
+  { Icon: MapPin, label: 'Location', value: 'Available Remote', href: null },
+  { Icon: FaGithub, label: 'GitHub', value: 'github.com/BaraaAlArab', href: 'https://github.com/BaraaAlArab' },
+  { Icon: FaLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/baraa-alarab', href: 'https://www.linkedin.com/in/baraa-alarab' },
 ]
 
 export default function HireMePage() {
@@ -28,18 +28,22 @@ export default function HireMePage() {
       </p>
 
       <section className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {contactCards.map(({ Icon, label, value }) => (
-          <div
-            key={label}
-            className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-md transition hover:bg-white/10"
-          >
-            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-purple-400/50 to-cyan-400/50">
-              <Icon className="h-5 w-5 text-cyan-200" />
-            </div>
-            <h3 className="text-xs tracking-wide text-white/50 uppercase">{label}</h3>
-            <p className="mt-1 truncate text-sm font-medium">{value}</p>
-          </div>
-        ))}
+        {contactCards.map(({ Icon, label, value, href }) => {
+          const Card = href ? 'a' : 'div'
+          return (
+            <Card
+              key={label}
+              {...(href ? { href, target: '_blank', rel: 'noreferrer' } : {})}
+              className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-md transition hover:bg-white/10"
+            >
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-purple-400/50 to-cyan-400/50">
+                <Icon className="h-5 w-5 text-cyan-200" />
+              </div>
+              <h3 className="text-xs tracking-wide text-white/50 uppercase">{label}</h3>
+              <p className="mt-1 truncate text-sm font-medium">{value}</p>
+            </Card>
+          )
+        })}
       </section>
 
       <section className="mt-8 rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-md sm:p-8">
