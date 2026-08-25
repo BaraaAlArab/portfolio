@@ -9,6 +9,8 @@ const contactCards = [
   { Icon: FaLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/baraa-alarab', href: 'https://www.linkedin.com/in/baraa-alarab-781363278' },
 ]
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+
 export default function HireMePage() {
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState('')
@@ -24,7 +26,7 @@ export default function HireMePage() {
     setError('')
 
     try {
-      const res = await fetch('http://localhost:4000/api/contact', {
+      const res = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
