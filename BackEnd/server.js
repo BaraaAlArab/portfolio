@@ -1,8 +1,11 @@
+import dns from 'node:dns'
 import express from 'express'
 import cors from 'cors'
 import 'dotenv/config'
 import contactRouter from './routes/contact.js'
 import projectsRouter from './routes/projects.js'
+
+dns.setDefaultResultOrder('ipv4first')
 
 const app = express()
 const PORT = process.env.PORT || 4000
