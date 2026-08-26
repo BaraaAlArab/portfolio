@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
   let emailSent = false
   try {
     emailSent = await sendContactNotification(submission)
-    if (emailSent) console.log(`Notification emailed to ${process.env.GMAIL_USER}`)
+    if (emailSent) console.log(`Email notification sent via Web3Forms`)
   } catch (err) {
     console.error('Email failed:', err.message)
   }

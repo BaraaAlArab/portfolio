@@ -1,46 +1,29 @@
-import nodemailer from 'nodemailer'
-
-function createTransport() {
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    return null
-  }
-  return nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    requireTLS: true,
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-  })
-}
+const WEB3FORMS_URL = 'https://api.web3forms.com/submit'
 
 function escapeHtml(text) {
   return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
 export async function sendContactNotification({ name, email, message }) {
-  const transporter = createTransport()
-
-  if (!transporter) {
-    console.warn('Email skipped: set GMAIL_USER and GMAIL_APP_PASSWORD in BackEnd/.env')
+  const accessKey = process.env.WEB3FORMS_ACCESS_KEY
+  if (!accessKey) {
+    console.warn('Email skipped: set WEB3FORMS_ACCESS_KEY in Render environment variables')
     return false
   }
 
-  await transporter.sendMail({
-    from: `"Portfolio Contact" <${process.env.GMAIL_USER}>`,
-    to: process.env.GMAIL_USER,
-    replyTo: email,
-    subject: `New message from ${escapeHtml(name)} - Portfolio`,
-    text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
-    html: `
-      <h2>New contact message</h2>
-      <p><b>Name:</b> ${escapeHtml(name)}</p>
-      <p><b>Email:</b> ${escapeHtml(email)}</p>
-      <p><b>Message:</b><br/>${escapeHtml(message).replace(/\n/g, '<br/>')}</p>
-    `,
+  const res = await fetch(WEB3FORMS_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      access_key: accessKey,
+      name,
+      email,
+      message,
+      subject: `New message from ${escapeHtml(name)} - Portfolio`,
+    }),
   })
 
+  const data = await res.json()
+  if (!data.success) throw new Error(data.message || 'Web3Forms request failed')
   return true
 }
