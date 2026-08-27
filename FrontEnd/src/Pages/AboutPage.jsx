@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import mePhoto from '../assets/me/me.jpg'
 
 export default function AboutPage() {
   const [photoOk, setPhotoOk] = useState(true)
@@ -13,9 +14,9 @@ export default function AboutPage() {
       <div className="mt-10 grid items-start gap-8 md:grid-cols-[200px_1fr]">
         {photoOk ? (
           <img
-            src="./../assets/me/me.jpg"
+            src={mePhoto}
             alt="Baraa Al Arab"
-            onError={() => setPhotoOk(true)}
+            onError={() => setPhotoOk(false)}
             className="h-48 w-48 rounded-2xl border border-white/15 object-cover backdrop-blur-md"
           />
         ) : (
