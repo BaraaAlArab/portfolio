@@ -13,7 +13,7 @@ export default function AboutPage() {
       <div className="mt-10 grid items-start gap-8 md:grid-cols-[200px_1fr]">
         {photoOk ? (
           <img
-            src="/profile.jpg"
+            src="./../assets/me/me.jpg"
             alt="Baraa Al Arab"
             onError={() => setPhotoOk(false)}
             className="h-48 w-48 rounded-2xl border border-white/15 object-cover backdrop-blur-md"
