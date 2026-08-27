@@ -15,7 +15,7 @@ export default function AboutPage() {
           <img
             src="./../assets/me/me.jpg"
             alt="Baraa Al Arab"
-            onError={() => setPhotoOk(false)}
+            onError={() => setPhotoOk(true)}
             className="h-48 w-48 rounded-2xl border border-white/15 object-cover backdrop-blur-md"
           />
         ) : (
