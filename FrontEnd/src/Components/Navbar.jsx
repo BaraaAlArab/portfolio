@@ -7,7 +7,7 @@ const linkClass = ({ isActive }) =>
   (isActive ? 'text-cyan-300' : 'text-white/70 hover:text-white')
 
 const menuLinkClass = ({ isActive }) =>
-  'menu-item translate-y-2 flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium leading-relaxed transition duration-200 ' +
+  'menu-item flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium leading-relaxed transition duration-200 ' +
   (isActive
     ? 'bg-white/10 text-cyan-300'
     : 'text-white/70 hover:bg-white/5 hover:translate-x-1 hover:text-white')

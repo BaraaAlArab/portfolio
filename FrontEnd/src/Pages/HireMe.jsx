@@ -9,7 +9,7 @@ const contactCards = [
   { Icon: FaLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/baraa-alarab', href: 'https://www.linkedin.com/in/baraa-alarab-781363278' },
 ]
 
-const WEB3FORMS_KEY = '89fdf89d-d05e-485e-ab5c-7202527aa7b4'
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
 
 export default function HireMePage() {
   const [status, setStatus] = useState('idle')
@@ -26,29 +26,29 @@ export default function HireMePage() {
     setError('')
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          name: form.name,
-          email: form.email,
-          message: form.message,
-          subject: `New message from ${form.name} - Portfolio`,
-        }),
+        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
       })
-      const data = await res.json()
 
-      if (!data.success) {
-        throw new Error(data.message || 'Failed to send message.')
+      let data = {}
+      try {
+        data = await res.json()
+      } catch {
+        // ignore unparseable bodies; res.ok still decides success below
+      }
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to send message. Please try again.')
       }
 
       setStatus('sent')
     } catch (err) {
       setError(
-        err.message.includes('fetch')
+        err instanceof TypeError
           ? 'Cannot reach the server. Please try again.'
-          : err.message
+          : err.message || 'Something went wrong. Please try again.'
       )
       setStatus('error')
     }

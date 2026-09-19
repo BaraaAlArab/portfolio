@@ -15,9 +15,12 @@ export default function HomePage() {
           Welcome to my portfolio. I build modern web apps with React and Node.js.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <button className="flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-7 py-3 font-medium transition hover:scale-105">
-            <Rocket className="h-4 w-4" /> <Link to="/demo">View Projects</Link>
-          </button>
+          <Link
+            to="/demo"
+            className="flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 px-7 py-3 font-medium transition hover:scale-105"
+          >
+            <Rocket className="h-4 w-4" /> View Projects
+          </Link>
           <Link
             to="/about"
             className="flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-3 font-medium backdrop-blur-md transition hover:bg-white/15"
