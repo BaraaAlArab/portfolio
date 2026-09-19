@@ -4,6 +4,7 @@ import cors from 'cors'
 import 'dotenv/config'
 import contactRouter from './routes/contact.js'
 import projectsRouter from './routes/projects.js'
+import statsRouter from './routes/stats.js'
 
 dns.setDefaultResultOrder('ipv4first')
 
@@ -19,6 +20,7 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/contact', contactRouter)
 app.use('/api/projects', projectsRouter)
+app.use('/api/stats', statsRouter)
 
 app.listen(PORT, () => {
   console.log(`API running on http://localhost:${PORT}`)

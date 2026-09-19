@@ -4,9 +4,9 @@ import Navbar from './Components/Navbar.jsx'
 import AuroraBackground from './Components/AuroraBackground.jsx'
 
 const HomePage = lazy(() => import('./Pages/HomePage.jsx'))
+const ProjectsPage = lazy(() => import('./Pages/ProjectsPage.jsx'))
 const AboutPage = lazy(() => import('./Pages/AboutPage.jsx'))
 const SkillsPage = lazy(() => import('./Pages/SkillsPage.jsx'))
-const DemoPages = lazy(() => import('./Pages/DemoPages.jsx'))
 const HireMe = lazy(() => import('./Pages/HireMe.jsx'))
 const NotFoundPage = lazy(() => import('./Pages/NotFoundPage.jsx'))
 
@@ -27,9 +27,9 @@ function App() {
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/skills" element={<SkillsPage />} />
-          <Route path="/demo" element={<DemoPages />} />
           <Route path="/hire-me" element={<HireMe />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

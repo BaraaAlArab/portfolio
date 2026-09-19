@@ -44,10 +44,25 @@ API endpoints:
 | Endpoint | Method | Description |
 | --- | --- | --- |
 | `/api/health` | GET | Server status |
-| `/api/projects` | GET | Project list |
+| `/api/projects` | GET | Projects pulled from GitHub (code + live demo links) |
+| `/api/stats` | GET | Real stats from GitHub (project count, years, followers, stars) |
 | `/api/contact` | POST | Contact form (sends email to owner) |
 
-The contact form needs Gmail credentials in `BackEnd/.env` — see
+## Managing content through GitHub (no admin panel)
+
+The site is fully driven by GitHub and files in the repo — there is no admin UI.
+
+- **Projects** come from your GitHub account (default `BaraaAlArab`, override with
+  `GITHUB_USERNAME`). A repo appears on the Projects page when it is not a fork and
+  has a description or a live `homepage` URL. To add a "Visit Live Site" button, set
+  the repo's Homepage on GitHub: repo → Settings → Websites (Homepage) → paste the
+  URL → save. Changes appear within ~10 minutes (server-side cache).
+- **Profile photo**: replace `FrontEnd/src/assets/me/me.jpg`.
+- **CV / resume**: replace `FrontEnd/public/resume.pdf` — the "Download CV" button
+  on the About page uses it.
+- **Years Coding**: set `START_YEAR` in `BackEnd/.env` (defaults to 2019).
+
+The contact form needs `WEB3FORMS_ACCESS_KEY` in `BackEnd/.env` — see
 [BackEnd/.env.example](BackEnd/.env.example).
 
 ## Author

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Home, UserRound, Code2, FlaskConical, Send } from 'lucide-react'
+import { Home, UserRound, Code2, FolderGit2, Send } from 'lucide-react'
 
 const linkClass = ({ isActive }) =>
   'flex items-center gap-2 text-sm font-medium transition ' +
@@ -14,9 +14,9 @@ const menuLinkClass = ({ isActive }) =>
 
 const navItems = [
   { to: '/', label: 'Home', icon: Home, end: true },
+  { to: '/projects', label: 'Projects', icon: FolderGit2 },
   { to: '/about', label: 'About', icon: UserRound },
   { to: '/skills', label: 'Skills', icon: Code2 },
-  { to: '/demo', label: 'Demo', icon: FlaskConical },
 ]
 
 function Navbar() {
