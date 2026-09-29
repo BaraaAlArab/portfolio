@@ -51,7 +51,7 @@ export default function AboutPage() {
             </div>
           )}
           <a
-            href="/resume.pdf"
+            href="/BaraaCV.pdf"
             download
             className="flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-5 py-2.5 text-sm font-medium backdrop-blur-md transition hover:bg-white/15"
           >
